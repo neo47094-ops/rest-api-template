@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: ${APP_NAME:calculator-service}
+  profiles:
+    active: ${APP_ENV:local}
+  lifecycle:
+    timeout-per-shutdown-phase: ${HTTP_SERVER_SHUTDOWN_TIMEOUT:5}s
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DATABASE:calculator}?currentSchema=${POSTGRES_SCHEMA:public}&sslmode=${POSTGRES_SSL_MODE:disable}
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    hikari:
+      maximum-pool-size: ${POSTGRES_CONN_MAX_OPEN:25}
+      minimum-idle: ${POSTGRES_CONN_MIN_IDLE:1}
+      idle-timeout: 600000
+  flyway:
+    enabled: true
+    default-schema: ${POSTGRES_SCHEMA:public}
+    schemas: ${POSTGRES_SCHEMA:public}
+
+server:
+  address: ${HTTP_SERVER_HOST:0.0.0.0}
+  port: ${HTTP_SERVER_PORT:8080}
+  shutdown: graceful
+
+app:
+  api-key: ${API_KEY:a-dummy-but-valid-api-key}
+  openapi-ui-enabled: ${OPENAPI_UI_ENABLE:false}
+  openapi-ui-path: ${OPENAPI_UI_PATH:/redoc}
+
+logging:
+  level:
+    root: ${LOGGER_LEVEL:INFO}

@@ -1,0 +1,35 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Maven / Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+hs_err_pid*
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json.example
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# OpenAPI tooling
+.redocly/
+node_modules/
+
+# Test reports
+coverage/
